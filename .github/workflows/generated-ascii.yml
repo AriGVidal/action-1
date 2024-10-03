@@ -1,0 +1,27 @@
+name: Generate ASCII Artwork
+
+on: push
+
+jobs:
+    first_job:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: List and read files
+          run: |
+            echo "My first Github action job"
+            ls -ltra
+            cat README.md
+
+        - name: Generate ASCII Artwork
+          run: cowsay -f dragon "Run for cover, I'am a dragon... RAWR" >> dragon.txt
+
+        - name: Test file exits
+          run: grep -i "dragon" dragon.txt
+
+        - name: Read file
+          run: cat dragon.txt
+
+        - name: List repo files
+          run: ls -ltra
